@@ -1,0 +1,5 @@
+MSG p1 0 a
+MSG p1 1 b
+MSG p1 0 a
+MSG p2 0 c
+MSG p1 2 d

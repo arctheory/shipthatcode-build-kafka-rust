@@ -1,0 +1,66 @@
+{
+  "course": "build-kafka",
+  "language": "rust",
+  "language_id": 73,
+  "entrypoint": "main.rs",
+  "version": 1,
+  "content_hash": "14bd3bafd859863c",
+  "lessons": [
+    {
+      "slug": "what-is-kafka",
+      "tests_hash": "48c37c9905ae"
+    },
+    {
+      "slug": "log-structure",
+      "tests_hash": "6fad8b1b53ab"
+    },
+    {
+      "slug": "partitions",
+      "tests_hash": "6d66effa3da1"
+    },
+    {
+      "slug": "wire-framing",
+      "tests_hash": "bcc5b008a38d"
+    },
+    {
+      "slug": "log-compaction",
+      "tests_hash": "987a0e7218be"
+    },
+    {
+      "slug": "producers",
+      "tests_hash": "bc769d5e7145"
+    },
+    {
+      "slug": "consumers",
+      "tests_hash": "dbbd033b8da3"
+    },
+    {
+      "slug": "consumer-groups",
+      "tests_hash": "1144a6367072"
+    },
+    {
+      "slug": "sticky-assignment",
+      "tests_hash": "d4a01034b914"
+    },
+    {
+      "slug": "replication",
+      "tests_hash": "e667a84d0a83"
+    },
+    {
+      "slug": "exactly-once",
+      "tests_hash": "db069bb518ac"
+    },
+    {
+      "slug": "kafka-transactions",
+      "tests_hash": "7271d9901671"
+    },
+    {
+      "slug": "monitoring",
+      "tests_hash": "27a552cadf4f"
+    },
+    {
+      "slug": "production-kafka",
+      "tests_hash": "d457a774e71f"
+    }
+  ]
+}
