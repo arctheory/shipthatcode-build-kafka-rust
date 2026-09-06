@@ -1,4 +1,7 @@
-use std::io::{self, BufRead, Write};
+use std::{
+    collections::BTreeSet,
+    io::{self, BufRead, Write},
+};
 
 // Read PARTITIONS <n>, then KEY <string> lines. Print sum-of-bytes(key) mod n for each KEY.
 
@@ -6,7 +9,7 @@ fn main() {
     let stdin = io::stdin();
     let stdout = io::stdout();
     let mut _out = stdout.lock();
-    let mut size: u32 = 0;
+    let mut offset_list: BTreeSet<u32> = BTreeSet::new();
     for raw in stdin.lock().lines() {
         let line = match raw {
             Ok(s) => s,
@@ -18,15 +21,27 @@ fn main() {
         }
         // TODO: parse line, update state, emit output via writeln!
         let parts: Vec<&str> = line.split(' ').collect();
-        if parts.get(0).unwrap().eq(&"PARTITIONS") {
-            size = parts.get(1).unwrap().parse().expect("Invalid number");
-        }
+        let key = parts.get(0).unwrap();
+        let value: u32 = parts.get(1).unwrap().parse().expect("Invalid number");
 
-        if parts.get(0).unwrap().eq(&"KEY") {
-            let value = parts.get(1).unwrap_or(&&"");
-            let hash: u32 = value.chars().map(|c| c as u32).sum();
-            let value_size = hash % size;
-            println!("{}", value_size);
+        match *key {
+            "SEGMENT" => {
+                offset_list.insert(value);
+            }
+            "LOOKUP" => {
+                let mut prev_offset = offset_list.iter().min().unwrap();
+                for offset in offset_list.iter() {
+                    if offset <= &value && offset >= prev_offset {
+                        prev_offset = offset;
+                    }
+                }
+                if prev_offset <= &value {
+                    println!("{}", prev_offset);
+                } else {
+                    println!("NOT_FOUND");
+                }
+            }
+            _ => {}
         }
     }
 }
