@@ -21,8 +21,15 @@ fn main() {
         }
         // TODO: parse line, update state, emit output via writeln!
         let parts: Vec<&str> = line.split(' ').collect();
-        let key = parts.get(0).unwrap();
-        let value: u32 = parts.get(1).unwrap().parse().expect("Invalid number");
+        let Some(key) = parts.get(0) else {
+            continue;
+        };
+        let value: u32 = match parts.get(1) {
+            Some(_value) => _value.parse().expect("invalid number"),
+            None => {
+                continue;
+            }
+        };
 
         match *key {
             "SEGMENT" => {
