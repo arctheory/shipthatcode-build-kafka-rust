@@ -39,13 +39,17 @@ fn main() {
                 offset_list.insert(value);
             }
             "LOOKUP" => {
-                let mut prev_offset = offset_list.iter().min().copied().unwrap_or(u32::MAX);
-                for offset in offset_list.iter().copied() {
-                    if offset <= value && offset >= prev_offset {
+                if offset_list.len() == 0 {
+                    println!("NOT_FOUND");
+                    continue;
+                }
+                let mut prev_offset = offset_list.iter().min().unwrap();
+                for offset in offset_list.iter() {
+                    if offset <= &value && offset >= prev_offset {
                         prev_offset = offset;
                     }
                 }
-                if prev_offset <= value {
+                if prev_offset <= &value {
                     println!("{}", prev_offset);
                 } else {
                     println!("NOT_FOUND");
