@@ -23,7 +23,7 @@ fn main() {
         }
 
         if parts.get(0).unwrap().eq(&"KEY") {
-            let value = parts.get(1).unwrap();
+            let value = parts.get(1).unwrap_or(&&"");
             let hash: u32 = value.chars().map(|c| c as u32).sum();
             let value_size = hash % size;
             println!("{}", value_size);
