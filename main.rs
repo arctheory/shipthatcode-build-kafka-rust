@@ -39,7 +39,7 @@ fn main() {
                 offset_list.insert(value);
             }
             "LOOKUP" => {
-                let mut prev_offset = offset_list.iter().min().unwrap();
+                let mut prev_offset = offset_list.iter().min().unwrap_or(&u32::MAX);
                 for offset in offset_list.iter() {
                     if offset <= &value && offset >= prev_offset {
                         prev_offset = offset;
