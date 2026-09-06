@@ -21,8 +21,11 @@ fn main() {
         }
         // TODO: parse line, update state, emit output via writeln!
         let parts: Vec<&str> = line.split(' ').collect();
-        let Some(key) = parts.get(0) else {
-            continue;
+        let key = match parts.get(0) {
+            Some(_key) => _key,
+            None => {
+                continue;
+            }
         };
         let value: u32 = match parts.get(1) {
             Some(_value) => _value.parse().expect("invalid number"),
